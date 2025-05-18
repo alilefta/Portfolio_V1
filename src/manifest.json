@@ -1,0 +1,35 @@
+{
+	"name": "Ali Lefta - Full Stack Developer Portfolio",
+	"short_name": "Ali Lefta",
+	"description": "The portfolio of Ali Lefta, a full stack developer showcasing projects and skills.",
+	"icons": [
+		{
+			"src": "./assets/favicon/fav_96x96.png",
+			"sizes": "96x96",
+			"type": "image/png"
+		},
+		{
+			"src": "./assets/favicon/fav_128x128.png",
+			"sizes": "128x128",
+			"type": "image/png"
+		},
+		{
+			"src": "./assets/favicon/fav_192x192.png",
+			"sizes": "192x192",
+			"type": "image/png",
+			"purpose": "any"
+		},
+		{
+			"src": "./assets/favicon/fav_512x512.png",
+			"sizes": "512x512",
+			"type": "image/png",
+			"purpose": "maskable"
+		}
+	],
+	"start_url": "/index.html?source=pwa",
+	"display": "standalone",
+	"scope": "/",
+	"background_color": "#0a192f",
+	"theme_color": "#0a192f",
+	"orientation": "portrait-primary"
+}

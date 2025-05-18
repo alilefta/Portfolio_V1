@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Ali Lefta | Full Stack Developer</title>
+		<!-- Tailwind CSS JIT CDN -->
+		<script src="https://cdn.tailwindcss.com"></script>
+		<meta name="theme-color" content="#0a192f" />
+		<!-- Match your manifest's theme_color -->
+
+		<!-- GSAP Core and ScrollTrigger Plugin -->
+		<link rel="icon" href="./src/assets/favicon/fav.ico" sizes="any" />
+		<link rel="apple-touch-icon" href="./src/assets/favicon/fav.png" />
+		<link rel="manifest" href="./src/manifest.json" />
+		<!-- For PWAs, more advanced -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+		<!-- Devicons for tech stack (optional, but nice) -->
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css" />
+		<link rel="stylesheet" href="./src/styles.css" />
+	</head>
+	<body class="bg-[#0a192f] text-[#ccd6f6] font-sans antialiased">
+		<div id="cursor-follower" class="fixed w-8 h-8 rounded-full pointer-events-none z-[9999] opacity-0"></div>
+
+		<div id="loader" class="fixed inset-0 bg-[#0a192f] z-[9999] flex items-center justify-center">
+			<div class="relative">
+				<svg class="w-24 h-24" viewBox="0 0 100 100">
+					<circle cx="50" cy="50" r="40" stroke="#233554" stroke-width="8" fill="none" />
+					<circle id="loader-circle" cx="50" cy="50" r="40" stroke="#64ffda" stroke-width="8" stroke-dasharray="251" stroke-dashoffset="251" fill="none" />
+				</svg>
+				<span class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-xl font-mono text-[#64ffda]">AL</span>
+			</div>
+		</div>
+		<div id="progress-bar" class="fixed top-0 left-0 h-1 bg-[#64ffda] z-[999] w-0"></div>
+
+		<!-- Header for Mobile Nav Toggle -->
+		<header class="lg:hidden fixed top-0 left-0 right-0 z-[99] bg-[#0a192f]/80 backdrop-blur-md shadow-lg">
+			<div class="container mx-auto px-6 py-4 flex justify-between items-center">
+				<a href="#hero" class="text-2xl font-bold text-[#64ffda]">Ali L.</a>
+				<button id="mobile-menu-button" class="text-[#64ffda] focus:outline-none" title="humburger">
+					<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+					</svg>
+				</button>
+			</div>
+		</header>
+
+		<!-- Mobile Navigation Menu (Overlay) -->
+		<div id="mobile-menu" class="hidden fixed inset-0 bg-[#0a192f]/95 z-[100] flex flex-col items-center justify-center space-y-8 text-2xl lg:hidden">
+			<button id="close-menu-button" class="absolute top-6 right-6 text-[#64ffda] text-3xl">×</button>
+			<a href="#about" class="nav-link-mobile text-[#8892b0] hover:text-[#64ffda] transition duration-300">About</a>
+			<a href="#experience" class="nav-link-mobile text-[#8892b0] hover:text-[#64ffda] transition duration-300">Experience</a>
+			<a href="#projects" class="nav-link-mobile text-[#8892b0] hover:text-[#64ffda] transition duration-300">Projects</a>
+			<a href="#contact" class="nav-link-mobile text-[#8892b0] hover:text-[#64ffda] transition duration-300">Contact</a>
+			<a href="resume.pdf" target="_blank" class="mt-4 text-[#64ffda] border border-[#64ffda] px-6 py-2 rounded hover:bg-[#64ffda]/10 transition duration-300 text-xl"> Resume </a>
+		</div>
+
+		<!-- Side Dot Navigation (Desktop Only) -->
+		<nav class="hidden lg:flex flex-col fixed right-8 top-1/2 transform -translate-y-1/2 space-y-6 z-50">
+			<a href="#hero" class="nav-dot group" data-tooltip="Home">
+				<span class="block w-3 h-3 bg-[#8892b0] rounded-full group-hover:bg-[#64ffda] transition-colors duration-300"></span>
+			</a>
+			<a href="#about" class="nav-dot group" data-tooltip="About">
+				<span class="block w-3 h-3 bg-[#8892b0] rounded-full group-hover:bg-[#64ffda] transition-colors duration-300"></span>
+			</a>
+			<a href="#experience" class="nav-dot group" data-tooltip="Experience">
+				<span class="block w-3 h-3 bg-[#8892b0] rounded-full group-hover:bg-[#64ffda] transition-colors duration-300"></span>
+			</a>
+			<a href="#projects" class="nav-dot group" data-tooltip="Projects">
+				<span class="block w-3 h-3 bg-[#8892b0] rounded-full group-hover:bg-[#64ffda] transition-colors duration-300"></span>
+			</a>
+			<a href="#contact" class="nav-dot group" data-tooltip="Contact">
+				<span class="block w-3 h-3 bg-[#8892b0] rounded-full group-hover:bg-[#64ffda] transition-colors duration-300"></span>
+			</a>
+		</nav>
+
+		<!-- Main Content Wrapper -->
+		<main class="container mx-auto">
+			<!-- Hero Section -->
+			<section id="hero" class="min-h-screen flex flex-col justify-center items-start px-6 md:px-12 lg:px-24 pt-24 lg:pt-0">
+				<div class="max-w-2xl space-y-3 md:space-y-4">
+					<p class="hero-text text-lg text-[#64ffda] font-mono">Hi, my name is</p>
+					<h1 class="hero-text text-5xl sm:text-6xl md:text-7xl font-bold text-slate-100">Ali Lefta.</h1>
+					<h2 class="hero-text text-4xl sm:text-5xl md:text-6xl font-bold text-[#8892b0]">I build <span id="text-rotate"></span></h2>
+					<p class="hero-text text-[#8892b0] max-w-xl leading-relaxed">
+						I'm a full-stack developer specializing in crafting beautiful, performant, and user-centered digital experiences. Currently, I'm focused on building accessible and innovative
+						web applications.
+					</p>
+					<div class="hero-text pt-6">
+						<a href="mailto:alilefta95@gmail.com" class="text-[#64ffda] border border-[#64ffda] px-8 py-3 rounded hover:bg-[#64ffda]/10 transition duration-300 text-lg font-medium">
+							Get In Touch
+						</a>
+					</div>
+				</div>
+			</section>
+
+			<!-- About Section -->
+			<section id="about" class="scroll-mt-20 px-6 md:px-12 lg:px-24 py-16 md:py-24 min-h-[70vh] flex items-center">
+				<div class="max-w-3xl">
+					<h2 class="numbered-heading">About Me</h2>
+					<div class="space-y-4 text-[#8892b0] leading-relaxed text-lg">
+						<p>
+							Hello! I'm Ali, a passionate developer with a journey that began in dental technology. This unique background instilled in me a meticulous attention to detail and a
+							problem-solving mindset, which I now channel into crafting elegant and efficient web solutions.
+						</p>
+						<p>
+							My transition into tech was driven by a fascination with how software can transform ideas into reality. I thrive on the challenge of learning new technologies and applying
+							them to build intuitive and impactful applications. Whether it's architecting a robust backend or designing a pixel-perfect frontend, I'm committed to excellence.
+						</p>
+						<p>Here are a few technologies I've been working with recently:</p>
+					</div>
+					<ul class="mt-6 grid grid-cols-2 sm:grid-cols-3 gap-x-4 gap-y-2 text-[#8892b0] font-mono text-sm">
+						<li class="flex items-center"><span class="text-[#64ffda] mr-2">▹</span>JavaScript (ES6+)</li>
+						<li class="flex items-center"><span class="text-[#64ffda] mr-2">▹</span>React & Next.js</li>
+						<li class="flex items-center"><span class="text-[#64ffda] mr-2">▹</span>Node.js & Express</li>
+						<li class="flex items-center"><span class="text-[#64ffda] mr-2">▹</span>HTML & (S)CSS</li>
+						<li class="flex items-center"><span class="text-[#64ffda] mr-2">▹</span>Tailwind CSS</li>
+						<li class="flex items-center"><span class="text-[#64ffda] mr-2">▹</span>C# & .NET</li>
+					</ul>
+				</div>
+			</section>
+
+			<!-- Experience Section (Added - adjust content as needed) -->
+			<section id="experience" class="scroll-mt-20 px-6 md:px-12 lg:px-24 py-16 md:py-24 min-h-[70vh]">
+				<h2 class="numbered-heading">My Journey & Experience</h2>
+				<div class="max-w-3xl space-y-12">
+					<!-- Dental Tech Experience -->
+					<div class="experience-entry">
+						<h3 class="text-xl font-medium text-slate-100 dark:text-slate-900">
+							Senior Dental Technician
+							<span class="text-[#64ffda] dark:text-teal-600">@ Multiple Clinics</span>
+						</h3>
+						<p class="text-sm text-[#8892b0] dark:text-slate-600 font-mono mt-1">2019 – Present</p>
+						<ul class="mt-3 space-y-2 text-[#8892b0] dark:text-slate-600 list-inside">
+							<li class="flex">
+								<span class="text-[#64ffda] dark:text-teal-600 mr-2 mt-1">▹</span>
+								Crafted high-precision dental prosthetics with a focus on accuracy, aesthetics, and durability.
+							</li>
+							<li class="flex">
+								<span class="text-[#64ffda] dark:text-teal-600 mr-2 mt-1">▹</span>
+								Worked on complex cases requiring deep technical understanding, problem-solving, and material mastery.
+							</li>
+							<li class="flex">
+								<span class="text-[#64ffda] dark:text-teal-600 mr-2 mt-1">▹</span>
+								Developed a strong foundation in craftsmanship, attention to detail, and creative problem-solving—skills I later carried into software development.
+							</li>
+						</ul>
+					</div>
+
+					<!-- Freelance Developer -->
+					<div class="experience-entry">
+						<h3 class="text-xl font-medium text-slate-100 dark:text-slate-900">
+							Freelance Full Stack Developer
+							<span class="text-[#64ffda] dark:text-teal-600">@ Self-Employed</span>
+						</h3>
+						<p class="text-sm text-[#8892b0] dark:text-slate-600 font-mono mt-1">2022 – Present</p>
+						<ul class="mt-3 space-y-2 text-[#8892b0] dark:text-slate-600 list-inside">
+							<li class="flex">
+								<span class="text-[#64ffda] dark:text-teal-600 mr-2 mt-1">▹</span>
+								Build and maintain custom web and desktop apps, including dental case management systems in C# (WPF) and full-stack web platforms.
+							</li>
+							<li class="flex">
+								<span class="text-[#64ffda] dark:text-teal-600 mr-2 mt-1">▹</span>
+								Lead the entire product lifecycle—client consultation, design, development, and deployment.
+							</li>
+							<li class="flex">
+								<span class="text-[#64ffda] dark:text-teal-600 mr-2 mt-1">▹</span>
+								Delivered multiple real-world solutions across industries, including internal tools, portfolio websites, and small business platforms.
+							</li>
+						</ul>
+					</div>
+
+					<!-- Education -->
+					<div class="experience-entry">
+						<h3 class="text-xl font-medium text-slate-100 dark:text-slate-900">Education</h3>
+						<ul class="mt-3 space-y-2 text-[#8892b0] dark:text-slate-600 list-inside">
+							<li class="flex items-center">
+								<span class="text-[#64ffda] dark:text-teal-600 mr-2">▹</span>
+								BSc in Computer Science — University of Babylon, 2024
+							</li>
+							<li class="flex items-center">
+								<span class="text-[#64ffda] dark:text-teal-600 mr-2">▹</span>
+								BSc in Dental Technology — Middle Technical University, 2018
+							</li>
+						</ul>
+					</div>
+				</div>
+			</section>
+			<!-- Skills Section -->
+			<section id="skills" class="scroll-mt-20 px-6 md:px-12 lg:px-24 py-16 md:py-24">
+				<h2 class="numbered-heading">My Toolkit</h2>
+				<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8 text-center mt-12">
+					<!-- Skill Item -->
+					<div class="skill-item flex flex-col items-center p-4 rounded-lg hover:shadow-xl dark:hover:bg-slate-50 transition-shadow duration-300">
+						<i class="devicon-html5-plain-wordmark text-6xl text-[#64ffda] dark:text-teal-500"></i>
+						<p class="mt-2 text-sm text-[#8892b0] dark:text-slate-600 font-medium">HTML5</p>
+					</div>
+					<div class="skill-item flex flex-col items-center p-4 rounded-lg hover:shadow-xl dark:hover:bg-slate-50 transition-shadow duration-300">
+						<i class="devicon-css3-plain-wordmark text-6xl text-[#64ffda] dark:text-teal-500"></i>
+						<p class="mt-2 text-sm text-[#8892b0] dark:text-slate-600 font-medium">CSS3</p>
+					</div>
+					<div class="skill-item flex flex-col items-center p-4 rounded-lg hover:shadow-xl dark:hover:bg-slate-50 transition-shadow duration-300">
+						<i class="devicon-javascript-plain text-6xl text-[#64ffda] dark:text-teal-500"></i>
+						<p class="mt-2 text-sm text-[#8892b0] dark:text-slate-600 font-medium">JavaScript</p>
+					</div>
+					<div class="skill-item flex flex-col items-center p-4 rounded-lg hover:shadow-xl dark:hover:bg-slate-50 transition-shadow duration-300">
+						<i class="devicon-react-original-wordmark text-6xl text-[#64ffda] dark:text-teal-500"></i>
+						<p class="mt-2 text-sm text-[#8892b0] dark:text-slate-600 font-medium">React</p>
+					</div>
+					<div class="skill-item flex flex-col items-center p-4 rounded-lg hover:shadow-xl dark:hover:bg-slate-50 transition-shadow duration-300">
+						<i class="devicon-nodejs-plain-wordmark text-6xl text-[#64ffda] dark:text-teal-500"></i>
+						<p class="mt-2 text-sm text-[#8892b0] dark:text-slate-600 font-medium">Node.js</p>
+					</div>
+					<div class="skill-item flex flex-col items-center p-4 rounded-lg hover:shadow-xl dark:hover:bg-slate-50 transition-shadow duration-300">
+						<i class="devicon-tailwindcss-plain text-6xl text-[#64ffda] dark:text-teal-500"></i>
+						<p class="mt-2 text-sm text-[#8892b0] dark:text-slate-600 font-medium">Tailwind CSS</p>
+					</div>
+					<div class="skill-item flex flex-col items-center p-4 rounded-lg hover:shadow-xl dark:hover:bg-slate-50 transition-shadow duration-300">
+						<i class="devicon-git-plain-wordmark text-6xl text-[#64ffda] dark:text-teal-500"></i>
+						<p class="mt-2 text-sm text-[#8892b0] dark:text-slate-600 font-medium">Git</p>
+					</div>
+					<div class="skill-item flex flex-col items-center p-4 rounded-lg hover:shadow-xl dark:hover:bg-slate-50 transition-shadow duration-300">
+						<i class="devicon-csharp-plain text-6xl text-[#64ffda] dark:text-teal-500"></i>
+						<p class="mt-2 text-sm text-[#8892b0] dark:text-slate-600 font-medium">C#</p>
+					</div>
+					<div class="skill-item flex flex-col items-center p-4 rounded-lg hover:shadow-xl dark:hover:bg-slate-50 transition-shadow duration-300">
+						<i class="devicon-java-plain text-6xl text-[#64ffda] dark:text-teal-500"></i>
+						<p class="mt-2 text-sm text-[#8892b0] dark:text-slate-600 font-medium">Java</p>
+					</div>
+					<div class="skill-item flex flex-col items-center p-4 rounded-lg hover:shadow-xl dark:hover:bg-slate-50 transition-shadow duration-300">
+						<i class="devicon-postgresql-plain text-6xl text-[#64ffda] dark:text-teal-500"></i>
+						<p class="mt-2 text-sm text-[#8892b0] dark:text-slate-600 font-medium">PostgreSQL</p>
+					</div>
+					<!-- Add more skills -->
+				</div>
+			</section>
+
+			<!-- Projects Section -->
+			<section id="projects" class="scroll-mt-20 px-6 md:px-12 lg:px-24 py-16 md:py-24">
+				<h2 class="numbered-heading">Some Things I've Built</h2>
+				<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+					<!-- Project 1 -->
+					<div class="project-card bg-[#112240] p-6 rounded-md shadow-lg flex flex-col justify-between cursor-pointer" data-project-id="oscar-dental-lab">
+						<div>
+							<div class="flex justify-between items-center mb-4">
+								<i class="devicon-csharp-plain-wordmark text-4xl text-[#64ffda]"></i>
+								<div class="space-x-3">
+									<a href="#" target="_blank" rel="noopener noreferrer" class="text-[#8892b0] hover:text-[#64ffda] transition"><i class="devicon-github-original text-2xl"></i></a>
+									<!-- <a href="#" target="_blank" rel="noopener noreferrer" class="text-[#8892b0] hover:text-[#64ffda] transition"><i class="fas fa-external-link-alt"></i> Icon for live link -->
+								</div>
+							</div>
+							<h3 class="text-xl font-semibold text-slate-100 hover:text-[#64ffda] transition cursor-default">DentaFusionPro</h3>
+							<p class="text-[#8892b0] mt-2 text-sm leading-relaxed">
+								A comprehensive dental lab management system developed with C# and WPF, designed to streamline case tracking, technician workflows, and client communication.
+							</p>
+						</div>
+						<ul class="flex flex-wrap gap-x-3 gap-y-1 mt-4 text-xs text-[#8892b0] font-mono">
+							<li>C#</li>
+							<li>WPF</li>
+							<li>SQL Server</li>
+							<li>MVVM</li>
+						</ul>
+					</div>
+					<!-- Project 2 -->
+					<div class="project-card bg-[#112240] p-6 rounded-md shadow-lg flex flex-col justify-between cursor-pointer" data-project-id="auto-fusion-pro">
+						<div>
+							<div class="flex justify-between items-center mb-4">
+								<i class="devicon-javascript-plain text-4xl text-[#64ffda]"></i>
+								<div class="space-x-3">
+									<a href="#" target="_blank" rel="noopener noreferrer" class="text-[#8892b0] hover:text-[#64ffda] transition"><i class="devicon-github-original text-2xl"></i></a>
+								</div>
+							</div>
+							<h3 class="text-xl font-semibold text-slate-100 hover:text-[#64ffda] transition cursor-default">AutoFusionPro CMS</h3>
+							<p class="text-[#8892b0] mt-2 text-sm leading-relaxed">
+								A bespoke Content Management System tailored for automating client and case data management, featuring a dynamic form builder and reporting tools.
+							</p>
+						</div>
+						<ul class="flex flex-wrap gap-x-3 gap-y-1 mt-4 text-xs text-[#8892b0] font-mono">
+							<li>JavaScript</li>
+							<li>Node.js</li>
+							<li>Express</li>
+							<li>MongoDB</li>
+						</ul>
+					</div>
+					<!-- Add more project cards here -->
+					<div class="project-card bg-[#112240] p-6 rounded-md shadow-lg flex flex-col justify-between cursor-pointer" data-project-id="portfolio-project">
+						<div>
+							<div class="flex justify-between items-center mb-4">
+								<i class="devicon-react-original text-4xl text-[#64ffda]"></i>
+								<!-- Example Icon -->
+								<div class="space-x-3">
+									<a href="#" target="_blank" rel="noopener noreferrer" class="text-[#8892b0] hover:text-[#64ffda] transition"><i class="devicon-github-original text-2xl"></i></a>
+									<a href="#" target="_blank" rel="noopener noreferrer" class="text-[#8892b0] hover:text-[#64ffda] transition">
+										<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+											<path d="M10 4H6a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+										</svg>
+									</a>
+								</div>
+							</div>
+							<h3 class="text-xl font-semibold text-slate-100 hover:text-[#64ffda] transition cursor-default">Portfolio Website v1</h3>
+							<p class="text-[#8892b0] mt-2 text-sm leading-relaxed">
+								This very portfolio site! Built with HTML, Tailwind CSS, and GSAP for a lightweight, performant, and engaging showcase of my skills.
+							</p>
+						</div>
+						<ul class="flex flex-wrap gap-x-3 gap-y-1 mt-4 text-xs text-[#8892b0] font-mono">
+							<li>HTML5</li>
+							<li>Tailwind CSS</li>
+							<li>JavaScript</li>
+							<li>GSAP</li>
+						</ul>
+					</div>
+				</div>
+			</section>
+
+			<!-- Contact Section -->
+			<section id="contact" class="scroll-mt-20 px-6 md:px-12 lg:px-24 py-16 md:py-24 text-center min-h-[70vh] flex flex-col justify-center items-center">
+				<h2 class="text-xl font-mono text-[#64ffda] mb-2">04. What's Next?</h2>
+				<h3 class="text-4xl md:text-5xl font-bold text-slate-100 mb-4">Get In Touch</h3>
+				<p class="text-[#8892b0] max-w-xl mx-auto mb-10 leading-relaxed">
+					I'm currently open to new opportunities and collaborations. Whether you have a project in mind, a question, or just want to say hi, my inbox is always open. I'll try my best to get
+					back to you!
+				</p>
+				<a href="mailto:alilefta95@gmail.com" class="text-[#64ffda] border border-[#64ffda] px-8 py-4 rounded hover:bg-[#64ffda]/10 transition duration-300 text-lg font-medium"> Say Hello </a>
+			</section>
+		</main>
+
+		<!-- Footer -->
+		<footer class="text-center text-[#8892b0] py-10 px-6 text-sm">
+			<div class="lg:hidden flex justify-center space-x-6 mb-6">
+				<a href="https://github.com/alilefta" target="_blank" rel="noopener noreferrer" class="hover:text-[#64ffda] transition">
+					<i class="devicon-github-original text-2xl"></i>
+				</a>
+				<a href="https://www.linkedin.com/in/alilefta/" target="_blank" rel="noopener noreferrer" class="hover:text-[#64ffda] transition">
+					<i class="devicon-linkedin-plain text-2xl"></i>
+				</a>
+				<!-- Add other social links like Twitter, etc. -->
+			</div>
+			<a href="https://github.com/alilefta/portfolio" target="_blank" rel="noopener noreferrer" class="font-mono hover:text-[#64ffda] transition"> Designed & Built by Ali Lefta </a>
+			<p class="mt-1 font-mono">© <span id="currentYear"></span>. All rights reserved.</p>
+		</footer>
+
+		<!-- Social Links Sidebar (Desktop) - Optional, like Brittany Chiang's -->
+		<div class="hidden lg:block fixed bottom-0 left-12 w-10 z-10">
+			<ul class="flex flex-col items-center space-y-5 after:content-[''] after:block after:w-px after:h-24 after:bg-[#8892b0] after:mx-auto after:mt-5">
+				<li>
+					<a href="https://github.com/alilefta" target="_blank" rel="noopener noreferrer" class="text-[#8892b0] hover:text-[#64ffda] transition-transform hover:-translate-y-1 block">
+						<i class="devicon-github-original text-2xl"></i>
+					</a>
+				</li>
+				<li>
+					<a href="https://linkedin.com/in/alilefta" target="_blank" rel="noopener noreferrer" class="text-[#8892b0] hover:text-[#64ffda] transition-transform hover:-translate-y-1 block">
+						<i class="devicon-linkedin-plain text-2xl"></i>
+					</a>
+				</li>
+				<!-- Add more social icons here -->
+			</ul>
+		</div>
+		<div class="hidden lg:block fixed bottom-0 right-12 w-10 z-10">
+			<div class="flex flex-col items-center space-y-5 after:content-[''] after:block after:w-px after:h-24 after:bg-[#8892b0] after:mx-auto after:mt-5">
+				<a
+					href="mailto:alilefta95@gmail.com"
+					class="font-mono text-sm [writing-mode:vertical-rl] tracking-widest text-[#8892b0] hover:text-[#64ffda] transition-transform hover:-translate-y-1 block"
+				>
+					alilefta95@gmail.com
+				</a>
+			</div>
+		</div>
+		<div id="project-modal" class="fixed inset-0 bg-black/70 dark:bg-black/80 z-[1000] flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300">
+			<div
+				id="modal-content"
+				class="bg-[#112240] dark:bg-white w-full max-w-2xl max-h-[90vh] p-6 md:p-8 rounded-lg shadow-2xl overflow-y-auto transform scale-95 opacity-0 transition-all duration-300"
+			>
+				<button id="close-modal-button" class="absolute top-4 right-4 text-[#8892b0] dark:text-slate-500 hover:text-[#64ffda] dark:hover:text-teal-500 text-3xl">×</button>
+				<img id="modal-image" src="" alt="Project Screenshot" class="w-full h-auto max-h-64 object-cover rounded-md mb-6" />
+				<h3 id="modal-title" class="text-2xl md:text-3xl font-bold text-slate-100 dark:text-slate-900 mb-2"></h3>
+				<div id="modal-tags" class="flex flex-wrap gap-2 mb-4">
+					<!-- Tags will be injected here -->
+				</div>
+				<div id="modal-description" class="text-[#8892b0] dark:text-slate-600 leading-relaxed space-y-3 mb-6">
+					<!-- Detailed description paragraphs -->
+				</div>
+				<div id="modal-links" class="flex flex-wrap gap-4">
+					<!-- Links (GitHub, Live Demo) will be injected here -->
+				</div>
+			</div>
+		</div>
+		<script>
+			document.addEventListener("DOMContentLoaded", () => {
+				// --- Initial Setup ---
+				document.getElementById("currentYear").textContent = new Date().getFullYear();
+				gsap.registerPlugin(ScrollTrigger);
+
+				// --- Element Selectors (Define them once if used in multiple places) ---
+				const loaderElement = document.getElementById("loader");
+				const loaderCircleElement = document.getElementById("loader-circle");
+				const mobileMenuButton = document.getElementById("mobile-menu-button");
+				const closeMenuButton = document.getElementById("close-menu-button");
+				const mobileMenuElement = document.getElementById("mobile-menu");
+				const mobileNavLinks = mobileMenuElement ? mobileMenuElement.querySelectorAll(".nav-link-mobile") : [];
+				const tabButtons = document.querySelectorAll(".experience-tab-button");
+				const tabContents = document.querySelectorAll(".experience-tab-content");
+				const navDots = document.querySelectorAll(".nav-dot");
+				const heroDot = document.querySelector('.nav-dot[href="#hero"] span');
+				const progressBar = document.getElementById("progress-bar");
+				const typingTextElement = document.getElementById("text-rotate");
+				const cursorFollowerElement = document.getElementById("cursor-follower");
+
+				// --- Animation Functions ---
+				function animateHero() {
+					// Hero Section Text Animation
+					gsap.from(".hero-text", {
+						duration: 0.8,
+						opacity: 0,
+						y: 30,
+						ease: "power3.out",
+						stagger: 0.2,
+						// delay: 0.5, // Delay handled by loader
+					});
+
+					// Typing effect for hero can be started here
+					if (typingTextElement) {
+						setupTypingEffect();
+					}
+				}
+
+				function animateSections() {
+					// General Section Fade-in Animation
+					gsap.utils.toArray("section:not(#hero)").forEach((section) => {
+						const heading = section.querySelector(".numbered-heading, h2, h3");
+						const content = section.querySelectorAll("p, ul, .project-card, .skill-item, .experience-tab-content > div:not(.hidden) > *");
+
+						const tl = gsap.timeline({
+							scrollTrigger: {
+								trigger: section,
+								start: "top 80%",
+								end: "bottom 20%",
+								toggleActions: "play none none none",
+							},
+						});
+
+						if (heading) {
+							tl.from(heading, { opacity: 0, y: 50, duration: 0.6, ease: "power3.out" });
+						}
+						if (content && content.length > 0) {
+							// Determine stagger based on section or content type
+							let staggerAmount = 0.15;
+							let yOffset = 30;
+							if (section.id === "projects" || section.id === "skills") {
+								staggerAmount = 0.1; // Faster stagger for cards/items
+								yOffset = 40;
+							}
+
+							tl.from(
+								content,
+								{
+									opacity: 0,
+									y: yOffset,
+									duration: 0.5,
+									stagger: staggerAmount,
+									ease: "power3.out",
+								},
+								"-=0.4" // Overlap with heading animation
+							);
+						}
+					});
+				}
+
+				// --- UI Setup Functions ---
+				function setupMobileMenu() {
+					if (!mobileMenuButton || !closeMenuButton || !mobileMenuElement) return;
+
+					mobileMenuButton.addEventListener("click", () => {
+						mobileMenuElement.classList.remove("hidden");
+						gsap.fromTo(mobileMenuElement, { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.3 });
+						if (mobileNavLinks.length > 0) {
+							gsap.fromTo(mobileNavLinks, { opacity: 0, y: -10, stagger: 0.05 }, { opacity: 1, y: 0, stagger: 0.05, delay: 0.2 });
+						}
+					});
+
+					const closeMenu = () => {
+						gsap.to(mobileMenuElement, { opacity: 0, y: -20, duration: 0.3, onComplete: () => mobileMenuElement.classList.add("hidden") });
+					};
+
+					closeMenuButton.addEventListener("click", closeMenu);
+					mobileNavLinks.forEach((link) => {
+						link.addEventListener("click", closeMenu);
+					});
+				}
+
+				function setupExperienceTabs() {
+					if (tabButtons.length === 0) return;
+
+					tabButtons.forEach((button) => {
+						button.addEventListener("click", () => {
+							const targetId = button.dataset.target;
+
+							tabButtons.forEach((btn) => {
+								btn.classList.remove("border-[#64ffda]", "bg-[#112240]/50", "text-[#64ffda]");
+								btn.classList.add("border-[#233554]", "hover:bg-[#112240]/50", "hover:text-[#64ffda]", "text-[#8892b0]");
+							});
+							button.classList.add("border-[#64ffda]", "bg-[#112240]/50", "text-[#64ffda]");
+							button.classList.remove("border-[#233554]", "hover:bg-[#112240]/50", "hover:text-[#64ffda]", "text-[#8892b0]");
+
+							tabContents.forEach((content) => {
+								if (content.id === targetId) {
+									content.classList.remove("hidden");
+									gsap.from(content, { opacity: 0, y: 10, duration: 0.5 });
+								} else {
+									content.classList.add("hidden");
+								}
+							});
+						});
+					});
+				}
+
+				function setupNavDots() {
+					if (navDots.length === 0) return;
+
+					navDots.forEach((dot) => {
+						const tooltipText = dot.dataset.tooltip;
+						if (tooltipText) {
+							dot.addEventListener("mouseenter", () => {
+								const tooltip = document.createElement("div");
+								tooltip.className =
+									"tooltip-element absolute right-full top-1/2 transform -translate-y-1/2 mr-3 px-2 py-1 bg-[#112240] text-[#64ffda] text-xs rounded shadow-lg whitespace-nowrap opacity-0 transition-opacity duration-300";
+								tooltip.textContent = tooltipText;
+								dot.appendChild(tooltip);
+								gsap.to(tooltip, { opacity: 1, duration: 0.3 });
+							});
+							dot.addEventListener("mouseleave", () => {
+								const tooltip = dot.querySelector(".tooltip-element");
+								if (tooltip) {
+									gsap.to(tooltip, { opacity: 0, duration: 0.3, onComplete: () => tooltip.remove() });
+								}
+							});
+						}
+
+						const sectionId = dot.getAttribute("href");
+						if (document.querySelector(sectionId)) {
+							// Ensure section exists
+							ScrollTrigger.create({
+								trigger: sectionId,
+								start: "top center",
+								end: "bottom center",
+								onToggle: (self) => {
+									if (self.isActive) {
+										navDots.forEach((d) => d.querySelector("span")?.classList.remove("bg-[#64ffda]", "scale-125"));
+										navDots.forEach((d) => d.querySelector("span")?.classList.add("bg-[#8892b0]"));
+										dot.querySelector("span")?.classList.add("bg-[#64ffda]", "scale-125");
+										dot.querySelector("span")?.classList.remove("bg-[#8892b0]");
+									}
+								},
+							});
+						}
+					});
+
+					if (heroDot) {
+						heroDot.classList.add("bg-[#64ffda]", "scale-125");
+						heroDot.classList.remove("bg-[#8892b0]");
+					}
+				}
+
+				function setupTiltEffect() {
+					const cards = document.querySelectorAll(".project-card");
+					if (cards.length === 0) return;
+
+					cards.forEach((card) => {
+						card.addEventListener("mousemove", (e) => {
+							const rect = card.getBoundingClientRect();
+							const x = e.clientX - rect.left;
+							const y = e.clientY - rect.top;
+							const xPercent = (x / rect.width - 0.5) * 2;
+							const yPercent = (y / rect.height - 0.5) * 2;
+
+							gsap.to(card, {
+								rotationY: xPercent * 5,
+								rotationX: -yPercent * 5,
+								transformPerspective: 1000,
+								ease: "power1.out",
+								duration: 0.4,
+							});
+						});
+
+						card.addEventListener("mouseleave", () => {
+							gsap.to(card, {
+								rotationY: 0,
+								rotationX: 0,
+								duration: 0.7,
+								ease: "elastic.out(1, 0.3)",
+							});
+						});
+					});
+				}
+
+				function setupScrollProgress() {
+					if (!progressBar) return;
+
+					window.addEventListener("scroll", () => {
+						const scrollTop = window.scrollY || document.documentElement.scrollTop;
+						const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+						const scrolled = (scrollTop / height) * 100;
+						progressBar.style.width = scrolled + "%";
+					});
+				}
+
+				function setupTypingEffect() {
+					if (!typingTextElement) return;
+					const roles = ["things for the web.", "responsive websites.", "elegant interfaces.", "digital experiences."];
+					let roleIndex = 0;
+					let charIndex = 0;
+					let isDeleting = false;
+					let text = "";
+
+					function type() {
+						const currentRole = roles[roleIndex];
+						if (isDeleting) {
+							text = currentRole.substring(0, charIndex - 1);
+							charIndex--;
+						} else {
+							text = currentRole.substring(0, charIndex + 1);
+							charIndex++;
+						}
+						typingTextElement.textContent = text;
+						let typeSpeed = isDeleting ? 50 : 100;
+						if (!isDeleting && charIndex === currentRole.length) {
+							typeSpeed = 1500;
+							isDeleting = true;
+						} else if (isDeleting && charIndex === 0) {
+							isDeleting = false;
+							roleIndex = (roleIndex + 1) % roles.length;
+							typeSpeed = 500;
+						}
+						setTimeout(type, typeSpeed);
+					}
+					type(); // Start the typing effect
+				}
+
+				function setupCursorFollower() {
+					if (!cursorFollowerElement) return;
+					gsap.set(cursorFollowerElement, { xPercent: -50, yPercent: -50 });
+
+					window.addEventListener("mousemove", (e) => {
+						gsap.to(cursorFollowerElement, {
+							x: e.clientX,
+							y: e.clientY,
+							duration: 0.2, // Faster follow
+							ease: "power1.out",
+						});
+						if (cursorFollowerElement.style.opacity === "0") {
+							gsap.to(cursorFollowerElement, { opacity: 1, duration: 0.3 });
+						}
+					});
+
+					document.addEventListener("mouseleave", () => {
+						gsap.to(cursorFollowerElement, { opacity: 0, duration: 0.3 });
+					});
+
+					const interactiveElements = document.querySelectorAll("a, button, .project-card, .skill-item, .experience-tab-button"); // Added more specific hover targets
+					interactiveElements.forEach((el) => {
+						el.addEventListener("mouseenter", () => {
+							gsap.to(cursorFollowerElement, { scale: 1.5, duration: 0.3, backgroundColor: "rgba(100, 255, 218, 0.5)" }); // More visible on hover
+						});
+						el.addEventListener("mouseleave", () => {
+							gsap.to(cursorFollowerElement, { scale: 1, duration: 0.3, backgroundColor: "rgba(100, 255, 218, 0.3)" }); // Reset background
+						});
+					});
+				}
+
+				// --- Loader Logic ---
+				if (loaderElement && loaderCircleElement) {
+					gsap.to(loaderCircleElement, {
+						strokeDashoffset: 0,
+						duration: 1.2,
+						ease: "power2.inOut",
+					});
+					gsap.to(loaderElement, {
+						opacity: 0,
+						duration: 0.5,
+						delay: 1.5, // Wait for circle animation
+						onComplete: () => {
+							loaderElement.style.display = "none";
+							// Trigger main content animations AFTER loader is done
+							animateHero();
+							animateSections();
+						},
+					});
+				} else {
+					// Fallback if loader isn't present: run animations immediately
+					animateHero();
+					animateSections();
+				}
+
+				// Projects
+				const projectsData = [
+					{
+						id: "oscar-dental-lab", // Matches a data-attribute on the card
+						title: "Oscar Dental Lab",
+						image: "./src/assets/projects/denta-fusion-pro-large.jpg", // Larger image for modal
+						tags: ["C#", "WPF", "SQL Server", "MVVM"],
+						description: `
+            <p>Oscar Lab is a comprehensive desktop application designed to revolutionize dental lab management. It provides a robust platform for tracking cases from initial receipt to final delivery.</p>
+            <p>Key features include technician workflow optimization, client communication modules, inventory management for dental materials, and detailed reporting for business analytics. The system was built with a focus on intuitive UI/UX for non-technical lab staff.</p>
+            <h4 class="text-lg font-semibold text-slate-200 dark:text-slate-800 mt-4 mb-1">Challenges & Solutions:</h4>
+            <ul class="list-disc list-inside space-y-1">
+                <li>Challenge: Managing diverse and complex case specifications. Solution: Implemented a dynamic form builder and customizable case templates.</li>
+                <li>Challenge: Ensuring real-time updates for multiple users. Solution: Utilized efficient database transactions and event-driven updates.</li>
+            </ul>
+        `,
+						githubLink: "https://github.com/alilefta/OscarLab",
+						liveLink: null, // or 'https://dentafusionpro-demo.com'
+					},
+					{
+						id: "auto-fusion-pro",
+						title: "AutoFusionPro CMS",
+						image: "./src/assets/projects/autofusion-cms-large.jpg",
+						tags: ["JavaScript", "Node.js", "Express", "MongoDB"],
+						description: `
+            <p>AutoFusionPro CMS is a bespoke Content Management System created to streamline client and case data management for a specialized consultancy. It allows for easy creation, updating, and querying of client records and associated project data.</p>
+            <p>The system features role-based access control, a dynamic form builder for various data types, and automated reporting functionalities. It was built with a RESTful API backend and a lightweight vanilla JS frontend for specific internal dashboards.</p>
+        `,
+						githubLink: "https://github.com/alilefta/AutoFusionPro",
+						liveLink: "https://autofusion-demo.com",
+					},
+					// ... more projects
+				];
+				function setupProjectModals() {
+					const projectCards = document.querySelectorAll(".project-card[data-project-id]");
+					const modal = document.getElementById("project-modal");
+					const modalContent = document.getElementById("modal-content");
+					const closeModalButton = document.getElementById("close-modal-button");
+
+					if (!modal || projectCards.length === 0) return;
+
+					const modalImageEl = document.getElementById("modal-image");
+					const modalTitleEl = document.getElementById("modal-title");
+					const modalTagsEl = document.getElementById("modal-tags");
+					const modalDescriptionEl = document.getElementById("modal-description");
+					const modalLinksEl = document.getElementById("modal-links");
+
+					projectCards.forEach((card) => {
+						card.addEventListener("click", () => {
+							const projectId = card.dataset.projectId;
+							const projectData = projectsData.find((p) => p.id === projectId);
+
+							if (!projectData) return;
+
+							modalImageEl.src = projectData.image || "";
+							modalImageEl.alt = projectData.title + " screenshot";
+							modalTitleEl.textContent = projectData.title;
+							modalDescriptionEl.innerHTML = projectData.description; // Use innerHTML for formatted text
+
+							modalTagsEl.innerHTML = ""; // Clear previous tags
+							projectData.tags.forEach((tag) => {
+								const tagEl = document.createElement("span");
+								tagEl.className = "bg-[#233554] dark:bg-slate-200 text-[#64ffda] dark:text-teal-600 px-2 py-1 rounded text-xs font-mono";
+								tagEl.textContent = tag;
+								modalTagsEl.appendChild(tagEl);
+							});
+
+							modalLinksEl.innerHTML = ""; // Clear previous links
+							if (projectData.githubLink) {
+								const githubLink = document.createElement("a");
+								githubLink.href = projectData.githubLink;
+								githubLink.target = "_blank";
+								githubLink.rel = "noopener noreferrer";
+								githubLink.className =
+									"inline-flex items-center text-[#64ffda] dark:text-teal-600 border border-[#64ffda] dark:border-teal-600 px-4 py-2 rounded hover:bg-[#64ffda]/10 dark:hover:bg-teal-600/10 transition duration-300 text-sm";
+								githubLink.innerHTML = `<i class="devicon-github-original mr-2"></i> View Code`;
+								modalLinksEl.appendChild(githubLink);
+							}
+							if (projectData.liveLink) {
+								const liveLink = document.createElement("a");
+								liveLink.href = projectData.liveLink;
+								liveLink.target = "_blank";
+								liveLink.rel = "noopener noreferrer";
+								liveLink.className =
+									"inline-flex items-center text-[#64ffda] dark:text-teal-600 border border-[#64ffda] dark:border-teal-600 px-4 py-2 rounded hover:bg-[#64ffda]/10 dark:hover:bg-teal-600/10 transition duration-300 text-sm";
+								liveLink.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 mr-2"><path d="M12.232 4.232a2.5 2.5 0 0 1 3.536 3.536l-1.225 1.224a.75.75 0 0 0 1.061 1.06l1.224-1.224a4 4 0 0 0-5.656-5.656l-3 3a4 4 0 0 0 .225 5.865.75.75 0 0 0 .976-1.138 2.5 2.5 0 0 1-.142-3.665l3-3Z" /><path d="M8.603 17.002a4 4 0 0 0 5.656-5.656l-1.225-1.224a.75.75 0 0 0-1.061-1.06l-1.224 1.224a2.5 2.5 0 0 1-3.536-3.536l3-3a2.5 2.5 0 0 1 3.665.141.75.75 0 0 0 1.138-.976 4 4 0 0 0-5.865-.224l-3 3a4 4 0 0 0 5.656 5.656Z" /></svg> Live Demo`;
+								modalLinksEl.appendChild(liveLink);
+							}
+
+							// Show modal with GSAP
+							gsap.to(modal, { opacity: 1, duration: 0.3, onStart: () => (modal.style.pointerEvents = "auto") });
+							gsap.to(modalContent, { opacity: 1, scale: 1, duration: 0.3, delay: 0.1, ease: "power2.out" });
+							document.body.style.overflow = "hidden"; // Prevent background scroll
+						});
+					});
+
+					function closeModal() {
+						gsap.to(modalContent, { opacity: 0, scale: 0.95, duration: 0.2, ease: "power2.in" });
+						gsap.to(modal, {
+							opacity: 0,
+							duration: 0.3,
+							delay: 0.1,
+							onComplete: () => {
+								modal.style.pointerEvents = "none";
+								document.body.style.overflow = "";
+							},
+						});
+					}
+
+					closeModalButton.addEventListener("click", closeModal);
+					modal.addEventListener("click", (e) => {
+						// Click outside modal content to close
+						if (e.target === modal) {
+							closeModal();
+						}
+					});
+					// Optional: Close modal with Escape key
+					document.addEventListener("keydown", (e) => {
+						if (e.key === "Escape" && modal.style.opacity === "1") {
+							closeModal();
+						}
+					});
+				}
+
+				setupProjectModals();
+
+				// --- Initialize UI Setup Functions ---
+				setupMobileMenu();
+				setupExperienceTabs();
+				setupNavDots();
+				setupTiltEffect();
+				setupScrollProgress();
+				//setupCursorFollower();
+				// setupTypingEffect(); // Called within animateHero now for better timing with hero text reveal.
+			}); // End of DOMContentLoaded
+		</script>
+	</body>
+</html>
