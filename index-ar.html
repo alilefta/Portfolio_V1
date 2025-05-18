@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="ar" dir="rtl" class="scroll-smooth">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Ali Lefta | Full Stack Developer</title>
+		<title>علي لفتة | مطور ويب شامل</title>
 		<!-- Tailwind CSS JIT CDN -->
 		<script src="https://cdn.tailwindcss.com"></script>
 		<meta name="theme-color" content="#0a192f" />
-		<!-- Match your manifest's theme_color -->
 
 		<!-- GSAP Core and ScrollTrigger Plugin -->
 		<link rel="icon" href="./src/assets/favicon/fav.ico" sizes="any" />
@@ -20,25 +19,26 @@
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css" />
 		<link rel="stylesheet" href="./src/styles.css" />
 	</head>
-	<body class="bg-[#0a192f] text-[#ccd6f6] font-sans antialiased">
+	<body class="bg-[#0a192f] text-[#ccd6f6] almarai-regular antialiased">
 		<div id="cursor-follower" class="fixed w-8 h-8 rounded-full pointer-events-none z-[9999] opacity-0"></div>
-
 		<div id="loader" class="fixed inset-0 bg-[#0a192f] z-[9999] flex items-center justify-center">
 			<div class="relative">
 				<svg class="w-24 h-24" viewBox="0 0 100 100">
 					<circle cx="50" cy="50" r="40" stroke="#233554" stroke-width="8" fill="none" />
 					<circle id="loader-circle" cx="50" cy="50" r="40" stroke="#64ffda" stroke-width="8" stroke-dasharray="251" stroke-dashoffset="251" fill="none" />
 				</svg>
-				<span class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-xl font-mono text-[#64ffda]">AL</span>
+				<span class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-xl text-[#64ffda] almarai-bold">علي</span>
 			</div>
 		</div>
+		<!-- <div class="fixed top-4 end-4 z-[1000] lg:top-6 lg:end-10">
+			<a href="index.html" lang="en" hreflang="en" class="text-[#64ffda] hover:underline font-mono text-sm px-3 py-1.5 bg-[#112240]/70 rounded-md">English</a>
+		</div> -->
 		<div id="progress-bar" class="fixed top-0 left-0 h-1 bg-[#64ffda] z-[999] w-0"></div>
 
 		<!-- Header for Mobile Nav Toggle -->
 		<header class="lg:hidden fixed top-0 left-0 right-0 z-[99] bg-[#0a192f]/80 backdrop-blur-md shadow-lg">
 			<div class="container mx-auto px-6 py-4 flex justify-between items-center">
-				<a href="#hero" class="text-2xl font-bold text-[#64ffda]">Ali L.</a>
-
+				<a href="#hero" class="text-2xl font-bold text-[#64ffda] almarai-bold">علي.</a>
 				<button id="mobile-menu-button" class="text-[#64ffda] focus:outline-none" title="humburger">
 					<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
@@ -49,17 +49,17 @@
 
 		<!-- Mobile Navigation Menu (Overlay) -->
 		<div id="mobile-menu" class="hidden fixed inset-0 bg-[#0a192f]/95 z-[100] flex flex-col items-center justify-center space-y-8 text-2xl lg:hidden">
-			<button id="close-menu-button" class="absolute top-6 right-6 text-[#64ffda] text-3xl">×</button>
-			<a href="#about" class="nav-link-mobile text-[#8892b0] hover:text-[#64ffda] transition duration-300">About</a>
-			<a href="#experience" class="nav-link-mobile text-[#8892b0] hover:text-[#64ffda] transition duration-300">Experience</a>
-			<a href="#projects" class="nav-link-mobile text-[#8892b0] hover:text-[#64ffda] transition duration-300">Projects</a>
-			<a href="#contact" class="nav-link-mobile text-[#8892b0] hover:text-[#64ffda] transition duration-300">Contact</a>
+			<button id="close-menu-button" class="absolute top-6 end-6 text-[#64ffda] text-3xl almarai-regular">×</button>
+			<a href="#about" class="nav-link-mobile text-[#8892b0] hover:text-[#64ffda] transition duration-300 almarai-regular">عني</a>
+			<a href="#experience" class="nav-link-mobile text-[#8892b0] hover:text-[#64ffda] transition duration-300 almarai-regular">خبراتي</a>
+			<a href="#projects" class="nav-link-mobile text-[#8892b0] hover:text-[#64ffda] transition duration-300 almarai-regular">مشاريعي</a>
+			<a href="#contact" class="nav-link-mobile text-[#8892b0] hover:text-[#64ffda] transition duration-300 almarai-regular">تواصل معي</a>
+			<a href="resume.pdf" target="_blank" class="mt-4 text-[#64ffda] border border-[#64ffda] px-6 py-2 rounded hover:bg-[#64ffda]/10 transition duration-300 text-xl almarai-regular">
+				السيرة الذاتية
+			</a>
+			<a href="index.html" lang="en" hreflang="en" class="text-[#64ffda] hover:underline">English</a>
 
-			<a href="index-ar.html" lang="ar" hreflang="ar" class="nav-link-mobile text-[#8892b0] hover:text-[#64ffda] transition duration-300 text-[#64ffda] hover:underline almarai-regular"
-				>بالعربي</a
 			>
-
-			<a href="resume.pdf" target="_blank" class="mt-4 text-[#64ffda] border border-[#64ffda] px-6 py-2 rounded hover:bg-[#64ffda]/10 transition duration-300 text-xl"> Resume </a>
 		</div>
 
 		<!-- Side Dot Navigation (Desktop Only) -->
@@ -84,18 +84,17 @@
 		<!-- Main Content Wrapper -->
 		<main class="container mx-auto">
 			<!-- Hero Section -->
-			<section id="hero" class="min-h-screen flex flex-col justify-center items-start px-6 md:px-12 lg:px-24 pt-24 lg:pt-0">
-				<div class="max-w-2xl space-y-3 md:space-y-4">
-					<p class="hero-text text-lg text-[#64ffda] font-mono">Hi, my name is</p>
-					<h1 class="hero-text text-5xl sm:text-6xl md:text-7xl font-bold text-slate-100">Ali Lefta.</h1>
-					<h2 class="hero-text text-4xl sm:text-5xl md:text-6xl font-bold text-[#8892b0]">I build <span id="text-rotate"></span></h2>
-					<p class="hero-text text-[#8892b0] max-w-xl leading-relaxed">
-						I'm a full-stack developer specializing in crafting beautiful, performant, and user-centered digital experiences. Currently, I'm focused on building accessible and innovative
-						web applications.
+			<section id="hero" class="min-h-screen flex flex-col justify-center items-start ps-6 md:ps-12 lg:ps-24 pe-6 md:pe-12 lg:pe-24 pt-24 lg:pt-0">
+				<div class="max-w-2xl space-y-3 md:space-y-4 text-start">
+					<p class="hero-text text-lg text-[#64ffda] almarai-regular">مرحباً، اسمي</p>
+					<h1 class="hero-text text-5xl sm:text-6xl md:text-7xl almarai-bold text-slate-100">علي لفتة.</h1>
+					<h2 class="hero-text text-4xl sm:text-5xl md:text-6xl almarai-bold text-[#8892b0]">أبني <span id="text-rotate"></span></h2>
+					<p class="hero-text text-[#8892b0] max-w-xl leading-relaxed almarai-regular">
+						أنا مطور ويب شامل متخصص في صناعة تجارب رقمية جميلة وعالية الأداء تتمحور حول المستخدم. حاليًا، أركز على بناء تطبيقات ويب مبتكرة وسهلة الوصول.
 					</p>
 					<div class="hero-text pt-6">
-						<a href="mailto:alilefta95@gmail.com" class="text-[#64ffda] border border-[#64ffda] px-8 py-3 rounded hover:bg-[#64ffda]/10 transition duration-300 text-lg font-medium">
-							Get In Touch
+						<a href="mailto:alilefta95@gmail.com" class="text-[#64ffda] border border-[#64ffda] px-8 py-3 rounded hover:bg-[#64ffda]/10 transition duration-300 text-lg almarai-regular">
+							تواصل معي
 						</a>
 					</div>
 				</div>
@@ -103,91 +102,88 @@
 
 			<!-- About Section -->
 			<section id="about" class="scroll-mt-20 px-6 md:px-12 lg:px-24 py-16 md:py-24 min-h-[70vh] flex items-center">
-				<div class="max-w-3xl">
-					<h2 class="numbered-heading">About Me</h2>
-					<div class="space-y-4 text-[#8892b0] leading-relaxed text-lg">
+				<div class="max-w-3xl text-start">
+					<h2 class="numbered-heading">عني</h2>
+					<div class="space-y-4 text-[#8892b0] leading-relaxed text-lg almarai-regular">
 						<p>
-							Hello! I'm Ali, a passionate developer with a journey that began in dental technology. This unique background instilled in me a meticulous attention to detail and a
-							problem-solving mindset, which I now channel into crafting elegant and efficient web solutions.
+							مرحباً! أنا علي، مطور شغوف بدأت رحلتي في مجال تكنولوجيا الأسنان. هذه الخلفية الفريدة أكسبتني اهتماماً دقيقاً بالتفاصيل وعقلية حل المشكلات، والتي أوجهها الآن نحو صياغة حلول
+							ويب أنيقة وفعالة.
 						</p>
 						<p>
-							My transition into tech was driven by a fascination with how software can transform ideas into reality. I thrive on the challenge of learning new technologies and applying
-							them to build intuitive and impactful applications. Whether it's architecting a robust backend or designing a pixel-perfect frontend, I'm committed to excellence.
+							كان انتقالي إلى مجال التكنولوجيا مدفوعًا بسحر قدرة البرمجيات على تحويل الأفكار إلى واقع. أزدهر في مواجهة تحدي تعلم التقنيات الجديدة وتطبيقها لبناء تطبيقات بديهية ومؤثرة.
+							سواء كان الأمر يتعلق بهندسة خلفية قوية أو تصميم واجهة أمامية مثالية، فأنا ملتزم بالتميز.
 						</p>
-						<p>Here are a few technologies I've been working with recently:</p>
+						<p>إليك بعض التقنيات التي أعمل بها مؤخرًا:</p>
 					</div>
 					<ul class="mt-6 grid grid-cols-2 sm:grid-cols-3 gap-x-4 gap-y-2 text-[#8892b0] font-mono text-sm">
-						<li class="flex items-center"><span class="text-[#64ffda] mr-2">▹</span>JavaScript (ES6+)</li>
-						<li class="flex items-center"><span class="text-[#64ffda] mr-2">▹</span>React & Next.js</li>
-						<li class="flex items-center"><span class="text-[#64ffda] mr-2">▹</span>Node.js & Express</li>
-						<li class="flex items-center"><span class="text-[#64ffda] mr-2">▹</span>HTML & (S)CSS</li>
-						<li class="flex items-center"><span class="text-[#64ffda] mr-2">▹</span>Tailwind CSS</li>
-						<li class="flex items-center"><span class="text-[#64ffda] mr-2">▹</span>C# & .NET</li>
+						<li class="flex items-center"><span class="text-[#64ffda] ms-2">JavaScript (ES6+)</span><span class="text-[#64ffda] me-2">▹</span></li>
+						<li class="flex items-center"><span class="text-[#64ffda] ms-2">React & Next.js</span><span class="text-[#64ffda] me-2">▹</span></li>
+						<li class="flex items-center"><span class="text-[#64ffda] ms-2">Node.js & Express</span><span class="text-[#64ffda] me-2">▹</span></li>
+						<li class="flex items-center"><span class="text-[#64ffda] ms-2">HTML & (S)CSS</span><span class="text-[#64ffda] me-2">▹</span></li>
+						<li class="flex items-center"><span class="text-[#64ffda] ms-2">Tailwind CSS</span><span class="text-[#64ffda] me-2">▹</span></li>
+						<li class="flex items-center"><span class="text-[#64ffda] ms-2">C# & .NET</span><span class="text-[#64ffda] me-2">▹</span></li>
 					</ul>
 				</div>
 			</section>
 
 			<!-- Experience Section (Added - adjust content as needed) -->
-			<section id="experience" class="scroll-mt-20 px-6 md:px-12 lg:px-24 py-16 md:py-24 min-h-[70vh]">
-				<h2 class="numbered-heading">My Journey & Experience</h2>
-				<div class="max-w-3xl space-y-12">
-					<!-- Dental Tech Experience -->
+			<section id="experience" class="scroll-mt-20 px-6 md:px-12 lg:px-24 py-16 md:py-24 min-h-[70vh] almarai-regular">
+				<h2 class="numbered-heading almarai-bold">رحلتي وخبراتي</h2>
+				<div class="max-w-3xl space-y-12 text-start">
 					<div class="experience-entry">
-						<h3 class="text-xl font-medium text-slate-100 dark:text-slate-900">
-							Senior Dental Technician
-							<span class="text-[#64ffda] dark:text-teal-600">@ Multiple Clinics</span>
+						<h3 class="text-xl font-medium text-slate-100 dark:text-slate-900 almarai-regular">
+							فني أسنان أول
+							<span class="text-[#64ffda] dark:text-teal-600 almarai-regular">@ عيادات متعددة</span>
 						</h3>
-						<p class="text-sm text-[#8892b0] dark:text-slate-600 font-mono mt-1">2019 – Present</p>
+						<p class="text-sm text-[#8892b0] dark:text-slate-600 almarai-regular mt-1">2019 – حتى الآن</p>
 						<ul class="mt-3 space-y-2 text-[#8892b0] dark:text-slate-600 list-inside">
 							<li class="flex">
-								<span class="text-[#64ffda] dark:text-teal-600 mr-2 mt-1">▹</span>
-								Crafted high-precision dental prosthetics with a focus on accuracy, aesthetics, and durability.
+								<span class="text-[#64ffda] dark:text-teal-600 ms-2 mt-1 almarai-regular">▹</span>
+								والمتانة.
 							</li>
 							<li class="flex">
-								<span class="text-[#64ffda] dark:text-teal-600 mr-2 mt-1">▹</span>
-								Worked on complex cases requiring deep technical understanding, problem-solving, and material mastery.
+								<span class="text-[#64ffda] dark:text-teal-600 ms-2 mt-1 almarai-regular">▹</span>
+								العمل على حالات معقدة تتطلب فهمًا تقنيًا عميقًا وحل المشكلات وإتقان المواد.
 							</li>
 							<li class="flex">
-								<span class="text-[#64ffda] dark:text-teal-600 mr-2 mt-1">▹</span>
-								Developed a strong foundation in craftsmanship, attention to detail, and creative problem-solving—skills I later carried into software development.
+								<span class="text-[#64ffda] dark:text-teal-600 ms-2 mt-1 almarai-regular">▹</span>
+								تطوير أساس قوي في الحرفية، والاهتمام بالتفاصيل، وحل المشكلات بشكل إبداعي - وهي مهارات نقلتها لاحقًا إلى تطوير البرمجيات.
 							</li>
 						</ul>
 					</div>
 
-					<!-- Freelance Developer -->
-					<div class="experience-entry">
-						<h3 class="text-xl font-medium text-slate-100 dark:text-slate-900">
-							Freelance Full Stack Developer
-							<span class="text-[#64ffda] dark:text-teal-600">@ Self-Employed</span>
+					<div class="experience-entry almarai-regular">
+						<h3 class="text-xl font-medium text-slate-100 dark:text-slate-900 almarai-regular">
+							مطور ويب شامل حر
+							<span class="text-[#64ffda] dark:text-teal-600 almarai-regular">@ عمل حر</span>
 						</h3>
-						<p class="text-sm text-[#8892b0] dark:text-slate-600 font-mono mt-1">2022 – Present</p>
-						<ul class="mt-3 space-y-2 text-[#8892b0] dark:text-slate-600 list-inside">
-							<li class="flex">
-								<span class="text-[#64ffda] dark:text-teal-600 mr-2 mt-1">▹</span>
-								Build and maintain custom web and desktop apps, including dental case management systems in C# (WPF) and full-stack web platforms.
+						<p class="text-sm text-[#8892b0] dark:text-slate-600 mt-1 almarai-regular">2022 – حتى الآن</p>
+						<ul class="mt-3 space-y-2 text-[#8892b0] dark:text-slate-600 list-inside almarai-regular">
+							<li class="flex almarai-regular">
+								<span class="text-[#64ffda] dark:text-teal-600 ms-2 mt-1">▹</span>
+								بناء وصيانة تطبيقات ويب وتطبيقات سطح مكتب مخصصة، بما في ذلك أنظمة إدارة حالات مختبرات الأسنان باستخدام C# (WPF) ومنصات ويب متكاملة.
 							</li>
-							<li class="flex">
-								<span class="text-[#64ffda] dark:text-teal-600 mr-2 mt-1">▹</span>
-								Lead the entire product lifecycle—client consultation, design, development, and deployment.
+							<li class="flex almarai-regular">
+								<span class="text-[#64ffda] dark:text-teal-600 ms-2 mt-1">▹</span>
+								قيادة دورة حياة المنتج بأكملها - استشارة العميل، التصميم، التطوير، والنشر.
 							</li>
-							<li class="flex">
-								<span class="text-[#64ffda] dark:text-teal-600 mr-2 mt-1">▹</span>
-								Delivered multiple real-world solutions across industries, including internal tools, portfolio websites, and small business platforms.
+							<li class="flex almarai-regular">
+								<span class="text-[#64ffda] dark:text-teal-600 ms-2 mt-1">▹</span>
+								تسليم العديد من الحلول الواقعية في مختلف الصناعات، بما في ذلك الأدوات الداخلية، مواقع البورتفوليو، ومنصات الأعمال الصغيرة.
 							</li>
 						</ul>
 					</div>
 
-					<!-- Education -->
 					<div class="experience-entry">
-						<h3 class="text-xl font-medium text-slate-100 dark:text-slate-900">Education</h3>
+						<h3 class="text-xl font-medium text-slate-100 dark:text-slate-900 almarai-regular">التعليم</h3>
 						<ul class="mt-3 space-y-2 text-[#8892b0] dark:text-slate-600 list-inside">
-							<li class="flex items-center">
-								<span class="text-[#64ffda] dark:text-teal-600 mr-2">▹</span>
-								BSc in Computer Science — University of Babylon, 2024
+							<li class="flex items-center almarai-regular">
+								<span class="text-[#64ffda] dark:text-teal-600 ms-2">▹</span>
+								بكالوريوس علوم الحاسوب — جامعة بابل، 2024
 							</li>
-							<li class="flex items-center">
-								<span class="text-[#64ffda] dark:text-teal-600 mr-2">▹</span>
-								BSc in Dental Technology — Middle Technical University, 2018
+							<li class="flex items-center almarai-regular">
+								<span class="text-[#64ffda] dark:text-teal-600 ms-2">▹</span>
+								بكالوريوس تكنولوجيا الأسنان — الجامعة التقنية الوسطى، 2018
 							</li>
 						</ul>
 					</div>
@@ -195,7 +191,7 @@
 			</section>
 			<!-- Skills Section -->
 			<section id="skills" class="scroll-mt-20 px-6 md:px-12 lg:px-24 py-16 md:py-24">
-				<h2 class="numbered-heading">My Toolkit</h2>
+				<h2 class="numbered-heading almarai-regular">أدواتي التقنية</h2>
 				<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8 text-center mt-12">
 					<!-- Skill Item -->
 					<div class="skill-item flex flex-col items-center p-4 rounded-lg hover:shadow-xl dark:hover:bg-slate-50 transition-shadow duration-300">
@@ -248,7 +244,7 @@
 
 			<!-- Projects Section -->
 			<section id="projects" class="scroll-mt-20 px-6 md:px-12 lg:px-24 py-16 md:py-24">
-				<h2 class="numbered-heading">Some Things I've Built</h2>
+				<h2 class="numbered-heading almarai-regular">بعض ما بنيت</h2>
 				<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
 					<!-- Project 1 -->
 					<div class="project-card bg-[#112240] p-6 rounded-md shadow-lg flex flex-col justify-between cursor-pointer" data-project-id="oscar-dental-lab">
@@ -262,13 +258,13 @@
 							</div>
 							<h3 class="text-xl font-semibold text-slate-100 hover:text-[#64ffda] transition cursor-default">DentaFusionPro</h3>
 							<p class="text-[#8892b0] mt-2 text-sm leading-relaxed">
-								A comprehensive dental lab management system developed with C# and WPF, designed to streamline case tracking, technician workflows, and client communication.
+								نظام شامل لإدارة مختبرات الأسنان تم تطويره باستخدام C# و WPF، مصمم لتبسيط تتبع الحالات وسير عمل الفنيين والتواصل مع العملاء.
 							</p>
 						</div>
-						<ul class="flex flex-wrap gap-x-3 gap-y-1 mt-4 text-xs text-[#8892b0] font-mono">
+						<ul class="flex flex-wrap gap-x-3 gap-y-1 mt-4 text-xs text-[#8892b0] font-mono" dir="ltr">
 							<li>C#</li>
 							<li>WPF</li>
-							<li>SQL Server</li>
+							<li>SQLite</li>
 							<li>MVVM</li>
 						</ul>
 					</div>
@@ -283,14 +279,16 @@
 							</div>
 							<h3 class="text-xl font-semibold text-slate-100 hover:text-[#64ffda] transition cursor-default">AutoFusionPro CMS</h3>
 							<p class="text-[#8892b0] mt-2 text-sm leading-relaxed">
-								A bespoke Content Management System tailored for automating client and case data management, featuring a dynamic form builder and reporting tools.
+								تطبيق سطح مكتب بلغة C# و WPF قيد الإنشاء لإدارة وكالة بيع قطع غيار سيارات نيسان وخدمات الصيانة. يتميز بإدارة المخزون، تتبع الطلبات، وفواتير باستخدام SQLite ونمط MVVM.
 							</p>
 						</div>
-						<ul class="flex flex-wrap gap-x-3 gap-y-1 mt-4 text-xs text-[#8892b0] font-mono">
-							<li>JavaScript</li>
-							<li>Node.js</li>
-							<li>Express</li>
-							<li>MongoDB</li>
+
+						<ul class="flex flex-wrap gap-x-3 gap-y-1 mt-4 text-xs text-[#8892b0] font-mono" dir="ltr">
+							<li>C#</li>
+							<li>WPF</li>
+							<li>SQLite</li>
+							<li>MVVM</li>
+							<li>Enterprise Architecture</li>
 						</ul>
 					</div>
 					<!-- Add more project cards here -->
@@ -301,11 +299,11 @@
 								<!-- Example Icon -->
 								<div class="space-x-3">
 									<a href="#" target="_blank" rel="noopener noreferrer" class="text-[#8892b0] hover:text-[#64ffda] transition"><i class="devicon-github-original text-2xl"></i></a>
-									<a href="#" target="_blank" rel="noopener noreferrer" class="text-[#8892b0] hover:text-[#64ffda] transition">
+									<!-- <a href="#" target="_blank" rel="noopener noreferrer" class="text-[#8892b0] hover:text-[#64ffda] transition">
 										<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
 											<path d="M10 4H6a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
 										</svg>
-									</a>
+									</a> -->
 								</div>
 							</div>
 							<h3 class="text-xl font-semibold text-slate-100 hover:text-[#64ffda] transition cursor-default">Portfolio Website v1</h3>
@@ -313,7 +311,7 @@
 								This very portfolio site! Built with HTML, Tailwind CSS, and GSAP for a lightweight, performant, and engaging showcase of my skills.
 							</p>
 						</div>
-						<ul class="flex flex-wrap gap-x-3 gap-y-1 mt-4 text-xs text-[#8892b0] font-mono">
+						<ul class="flex flex-wrap gap-x-3 gap-y-1 mt-4 text-xs text-[#8892b0] font-mono" dir="ltr">
 							<li>HTML5</li>
 							<li>Tailwind CSS</li>
 							<li>JavaScript</li>
@@ -325,13 +323,14 @@
 
 			<!-- Contact Section -->
 			<section id="contact" class="scroll-mt-20 px-6 md:px-12 lg:px-24 py-16 md:py-24 text-center min-h-[70vh] flex flex-col justify-center items-center">
-				<h2 class="text-xl font-mono text-[#64ffda] mb-2">04. What's Next?</h2>
-				<h3 class="text-4xl md:text-5xl font-bold text-slate-100 mb-4">Get In Touch</h3>
-				<p class="text-[#8892b0] max-w-xl mx-auto mb-10 leading-relaxed">
-					I'm currently open to new opportunities and collaborations. Whether you have a project in mind, a question, or just want to say hi, my inbox is always open. I'll try my best to get
-					back to you!
+				<h2 class="text-xl text-[#64ffda] mb-2 almarai-regular">04. ماذا بعد؟</h2>
+				<h3 class="text-4xl md:text-5xl font-bold text-slate-100 mb-4 almarai-regular">تواصل معي</h3>
+				<p class="text-[#8892b0] max-w-xl mx-auto mb-10 leading-relaxed almarai-regular">
+					أنا حاليًا منفتح على الفرص والتعاونات الجديدة. سواء كان لديك مشروع في ذهنك، أو سؤال، أو ترغب فقط في إلقاء التحية، فصندوق بريدي مفتوح دائمًا. سأبذل قصارى جهدي للرد عليك!
 				</p>
-				<a href="mailto:alilefta95@gmail.com" class="text-[#64ffda] border border-[#64ffda] px-8 py-4 rounded hover:bg-[#64ffda]/10 transition duration-300 text-lg font-medium"> Say Hello </a>
+				<a href="mailto:alilefta95@gmail.com" class="text-[#64ffda] border border-[#64ffda] px-8 py-4 rounded hover:bg-[#64ffda]/10 transition duration-300 text-lg almarai-regular">
+					أرسل مرحباً
+				</a>
 			</section>
 		</main>
 
@@ -346,17 +345,16 @@
 				</a>
 				<!-- Add other social links like Twitter, etc. -->
 			</div>
-			<a href="https://github.com/alilefta/portfolio" target="_blank" rel="noopener noreferrer" class="font-mono hover:text-[#64ffda] transition"> Designed & Built by Ali Lefta </a>
-			<p class="mt-1 font-mono">© <span id="currentYear"></span>. All rights reserved.</p>
+			<a href="https://github.com/alilefta/portfolio" target="_blank" rel="noopener noreferrer" class="almarai-regular hover:text-[#64ffda] transition"> تصميم وبناء علي لفتة </a>
+			<p class="mt-1 almarai-regular">© <span id="currentYear"></span>. جميع الحقوق محفوظة.</p>
 		</footer>
 
 		<!-- Social Links Sidebar (Desktop) - Optional, like Brittany Chiang's -->
-		<div class="hidden lg:block fixed bottom-0 left-12 w-10 z-10">
+		<div class="hidden lg:block fixed bottom-0 end-12 w-10 z-10">
 			<ul class="flex flex-col items-center space-y-5 after:content-[''] after:block after:w-px after:h-24 after:bg-[#8892b0] after:mx-auto after:mt-5">
 				<li>
-					<a href="index-ar.html" lang="ar" hreflang="ar" class="text-[#64ffda] hover:underline font-family almarai-regular">بالعربي</a>
+					<a href="index.html" lang="en" hreflang="en" class="text-[#64ffda] hover:underline font-sans">English</a>
 				</li>
-
 				<li>
 					<a href="https://github.com/alilefta" target="_blank" rel="noopener noreferrer" class="text-[#8892b0] hover:text-[#64ffda] transition-transform hover:-translate-y-1 block">
 						<i class="devicon-github-original text-2xl"></i>
@@ -367,10 +365,10 @@
 						<i class="devicon-linkedin-plain text-2xl"></i>
 					</a>
 				</li>
-				<!-- Add more social icons here -->
 			</ul>
 		</div>
-		<div class="hidden lg:block fixed bottom-0 right-12 w-10 z-10">
+
+		<div class="hidden lg:block fixed bottom-0 start-12 w-10 z-10">
 			<div class="flex flex-col items-center space-y-5 after:content-[''] after:block after:w-px after:h-24 after:bg-[#8892b0] after:mx-auto after:mt-5">
 				<a
 					href="mailto:alilefta95@gmail.com"
@@ -837,7 +835,7 @@
 				setupNavDots();
 				setupTiltEffect();
 				setupScrollProgress();
-				setupCursorFollower();
+				//setupCursorFollower();
 				// setupTypingEffect(); // Called within animateHero now for better timing with hero text reveal.
 			}); // End of DOMContentLoaded
 		</script>
