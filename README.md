@@ -1,13 +1,13 @@
 # Ali Lefta - Full Stack Developer Portfolio
 
-![Portfolio Screenshot](link_to_a_nice_screenshot_of_your_portfolio_hero_section_or_full_page.png)
+![Portfolio Screenshot](./screenshot/fullScreen.png)
 
 <!-- Ideally, add a screenshot to your repo and link it here -->
 <!-- Example: ./src/assets/screenshot.png -->
 
 This repository contains the source code for my personal portfolio website, showcasing my skills, projects, and journey as a Full Stack Developer. The website is built with pure HTML, CSS (Tailwind CSS via CDN), and JavaScript, featuring various animations and interactive elements powered by GSAP.
 
-**Live Site:** [https://yourusername.github.io/your-repo-name/](https://yourusername.github.io/your-repo-name/)
+**Live Site:** [https://alilefta.github.io/Portfolio_V1/](https://alilefta.github.io/Portfolio_V1/)
 
 <!-- Replace with your actual GitHub Pages link -->
 
